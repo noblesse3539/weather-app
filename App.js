@@ -1,32 +1,19 @@
-import React from 'react';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, Image, ActivityIndicator } from 'react-native';
 
 export default class App extends React.Component {
+  state = {
+    isLoaded: false
+  }
   render() {
+    const { isLoaded } = this.state;
     return (
       <View style={styles.container}>
-        <View style={styles.redView}/>
-        <View style={styles.yellowView}/>
-        <View style={styles.redView}/>
-        <View style={styles.yellowView}/>
-        <View style={styles.redView}/>
-        <View style={styles.yellowView}/>
-        <View style={styles.redView}/>
-        <View style={styles.yellowView}/>
-        <View style={styles.redView}/>
-        <View style={styles.yellowView}/>
-        <View style={styles.redView}/>
-        <View style={styles.yellowView}/>
-        <View style={styles.redView}/>
-        <View style={styles.yellowView}/>
-        <View style={styles.redView}/>
-        <View style={styles.yellowView}/>
-        <View style={styles.redView}/>
-        <View style={styles.yellowView}/>
-        <View style={styles.redView}/>
-        <View style={styles.yellowView}/>
-        <View style={styles.redView}/>
-        <View style={styles.yellowView}/>
+        {isLoaded ? null : (
+          <View style={styles.loading}>
+            <Text style={styles.loadingText}>Getting the weater</Text>
+          </View>
+        )}
       </View>
     );
   }
@@ -36,21 +23,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    flexDirection: 'row',
-    justifyContent:'flex-start',
-    alignItems:'flex-end',
-    flexWrap:'wrap'
+    
   },
-  redView: {
-    height: 50,
-    width: 50,
-    backgroundColor: 'red',
-    // alignSelf: 'flex-start'
+  loading: {
+    flex:1,
+    backgroundColor: '#FDF6AA',
+    justifyContent: 'flex-end'
   },
-  yellowView: {
-    height: 50,
-    width: 50,
-    backgroundColor: 'yellow',
-    // alignSelf: 'center'
+  loadingText: {
+    fontSize: 38,
+    marginBottom: 100,
+    paddingLeft: 25
   }
 });
