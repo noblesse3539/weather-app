@@ -9,7 +9,7 @@ export default class App extends React.Component {
     isLoaded: false,
     error: null,
     temperature: null,
-    name: null
+    name: null // 날씨 ex) snow
   }
   componentDidMount() {
     navigator.geolocation.getCurrentPosition( 
@@ -35,12 +35,12 @@ export default class App extends React.Component {
     });
   }
   render() {
-    const { isLoaded, error } = this.state;
+    const { isLoaded, error, temperature, name } = this.state;
     return (
       <View style={styles.container}>
         <StatusBar hidden={true}  />
         {isLoaded ? (
-          <Weather />
+          <Weather temp={Math.round((temperature - 273.15)*10)/10} weatherName={name}/>
         ) : (
           <View style={styles.loading}>
             <Text style={styles.loadingText}>Getting the weater</Text>
